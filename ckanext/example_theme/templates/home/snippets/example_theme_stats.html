@@ -29,8 +29,8 @@
             </div>
 
             <div class="col-md-3 col-sm-6">
-                <a class="homepage-footer-stats" href="dataset">
-                  <h3 class="homepage-count"> <span>NO</span>  <img src="/example_theme_stats/application.png"></h3>
+                <a class="homepage-footer-stats" href="{{ h.url_for(controller='showcase', action='index') }}">
+                  <h3 class="homepage-count"> <span>{{stats.showcase_count}}</span>  <img src="/example_theme_stats/application.png"></h3>
                   <h2 class="homepage-count-description"> Showcases </h2>
                 </a>
             </div>

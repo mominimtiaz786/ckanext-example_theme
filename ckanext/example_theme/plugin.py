@@ -22,25 +22,6 @@ from ckan.common import config
 from ckanext.pages.interfaces import IPagesSchema
 import ckan.logic.action.get as tk
 
-def show_most_popular_groups():
-
-    value = config.get('ckan.example_theme.show_most_popular_groups', False)
-    value = toolkit.asbool(value)
-    return value
-
-
-def most_popular_groups():
-    '''Return a sorted list of the groups with the most datasets.'''
-
-    # Get a list of all the site's groups from CKAN, sorted by number of
-    # datasets.
-    groups = toolkit.get_action('group_list')(
-        data_dict={ 'all_fields': True}) #'sort': 'packages desc',
-
-    # Truncate the list to the 10 most popular groups only.
-    groups = groups[:10]
-
-    return groups
 
 def all_categories():
     all_categories_list = []
@@ -132,30 +113,15 @@ def all_categories():
     return all_categories_list
 
 def popular_datasets(limit=4):
-    import urllib, json
-    site_url = config.get('ckan.site_url', None)
-    
-    url = site_url + "/api/3/action/package_search?q=&sort=views_total+desc"
-    response = urllib.urlopen(url)
-    dict = json.loads(response.read())
-    
+    datasets = toolkit.get_action('package_search')(
+        data_dict={ 'sort':'views_total desc','rows':limit})
+    return datasets['results']
 
-    count = dict['result']['count']
-    datasets = []
-    if count < limit:
-        limit = count
-    for i in range(limit):
-        dataset = dict['result']['results'][i]
-        datasets.append(dataset)
-    return datasets
+def most_recent_datasets(limit=4):
+    datasets = toolkit.get_action('package_search')(
+        data_dict={ 'sort':'metadata_created desc','rows':limit}) 
+    return datasets['results']
 
-def most_recent_datasets():
-    pass
-    datasets = toolkit.get_action('package_list')(
-        data_dict={ 'all_fields': True}) #'sort': 'packages desc',
-
-    datasets = datasets[:4]
-    return datasets
 
 class ExampleThemePlugin(plugins.SingletonPlugin):
     '''An example theme plugin.
@@ -166,6 +132,7 @@ class ExampleThemePlugin(plugins.SingletonPlugin):
     # Declare that this plugin will implement ITemplateHelpers.
     plugins.implements(plugins.ITemplateHelpers)
 
+    """
     plugins.implements(IPagesSchema)
 
     #IPagesSchema
@@ -176,7 +143,7 @@ class ExampleThemePlugin(plugins.SingletonPlugin):
                 toolkit.get_validator('boolean_validator')]
             })
         return schema
-    
+    """
     def update_config(self, config):
 
         # Add this plugin's templates dir to CKAN's extra_template_paths, so
@@ -193,10 +160,7 @@ class ExampleThemePlugin(plugins.SingletonPlugin):
         # Template helper function names should begin with the name of the
         # extension they belong to, to avoid clashing with functions from
         # other extensions.
-        return {'example_theme_most_popular_groups': most_popular_groups,
-                'example_theme_show_most_popular_groups':
-                show_most_popular_groups,
-                'example_theme_all_categories_list': all_categories,
+        return {'example_theme_all_categories_list': all_categories,
                 'example_theme_recent_datasets' : most_recent_datasets,
                 'example_theme_popular_datasets' : popular_datasets,
                 }

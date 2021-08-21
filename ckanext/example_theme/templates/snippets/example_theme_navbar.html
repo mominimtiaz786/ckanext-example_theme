@@ -17,16 +17,16 @@
           ('group_index', _('Groups')), ('home.about', _('About')) ) }}
           #}
                 
-                      <li class="nav-button"><a href="/dataset">Data <span class="sr-only">(current)</span></a>
+                      <li class="nav-button"><a href="{{ h.url_for(controller='package', action='search') }}">Data <span class="sr-only">(current)</span></a>
                           <hr id="dataset" class="options-underline hidden-xs" align="center">
                       </li>
-                      <li class="nav-button"><a href="/organization">Organizations</a>
+                      <li class="nav-button"><a href="{{ h.url_for(controller='organization', action='index') }}">Organizations</a>
                           <hr id="organization" class="options-underline hidden-xs" align="center">
                       </li>
-                      <li class="nav-button"><a href="/showcase">Showcase</a>
+                      <li class="nav-button"><a href={{ h.url_for(controller='showcase', action='index') }}>Showcase</a>
                           <hr id="showcase" class="options-underline hidden-xs" align="center">
                       </li>
-                      <li class="nav-button"><a href="/blog">Blog</a>
+                      <li class="nav-button"><a href="{{ h.url_for(controller='blog', action='index') }}">Blog</a>
                           <hr id="blog" class="options-underline hidden-xs" align="center">
                       </li>
                       <li class="nav-button"><a href="/contact">Connect</a>

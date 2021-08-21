@@ -7,7 +7,7 @@
                 <div class="container">
                     
                         
-{% for dataset in c.datasets %}
+{% for dataset in h.example_theme_recent_datasets() %}
   {% snippet 'home/snippets/example_theme_recent_item.html', package=dataset %}
   {% endfor %}
 
