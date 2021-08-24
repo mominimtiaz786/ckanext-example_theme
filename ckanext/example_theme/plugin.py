@@ -23,91 +23,78 @@ from ckanext.pages.interfaces import IPagesSchema
 import ckan.logic.action.get as tk
 
 
+
 def all_categories():
     all_categories_list = []
     
     category = {}
     category['text'] = "Agriculture, Food & Forests"
     category['img_src'] = "/example_theme_categories/agriculture.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Cities & Regions"
     category['img_src'] = "/example_theme_categories/cities.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Connectivity"
     category['img_src'] = "/example_theme_categories/connectivity.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Culture"
     category['img_src'] = "/example_theme_categories/culture.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Demography"
     category['img_src'] = "/example_theme_categories/demography.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Economy & Finance"
-    category['img_src'] = "/example_theme_categories/economy.png"
-    category['url'] = "#"
+    category['img_src'] = "/example_theme_categories/economy.png"    
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Education"
     category['img_src'] = "/example_theme_categories/education.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Environment & Energy"
     category['img_src'] = "/example_theme_categories/environment.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Government & Public Sector"
     category['img_src'] = "/example_theme_categories/government.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Health"
     category['img_src'] = "/example_theme_categories/health.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Housing & Public Services"
     category['img_src'] = "/example_theme_categories/housing.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Manufactoring & Public Services"
     category['img_src'] = "/example_theme_categories/manufecturing.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Public Safety"
     category['img_src'] = "/example_theme_categories/publicsafety.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     category = {}
     category['text'] = "Science & Technology"
     category['img_src'] = "/example_theme_categories/science.png"
-    category['url'] = "#"
     all_categories_list.append(category)
 
     return all_categories_list
@@ -132,18 +119,6 @@ class ExampleThemePlugin(plugins.SingletonPlugin):
     # Declare that this plugin will implement ITemplateHelpers.
     plugins.implements(plugins.ITemplateHelpers)
 
-    """
-    plugins.implements(IPagesSchema)
-
-    #IPagesSchema
-    def update_pages_schema(self, schema):
-        schema.update({
-            'new_field': [
-                toolkit.get_validator('not_empty'),
-                toolkit.get_validator('boolean_validator')]
-            })
-        return schema
-    """
     def update_config(self, config):
 
         # Add this plugin's templates dir to CKAN's extra_template_paths, so

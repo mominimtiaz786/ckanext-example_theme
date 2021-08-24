@@ -4,7 +4,7 @@
 
         <div class="row" align="center">
             <div class="col-md-3 col-sm-6">
-                <a class="homepage-footer-stats" href="dataset">
+                <a class="homepage-footer-stats" href="{{ h.url_for(controller='package', action='search') }}">
                   <h3 class="homepage-count"> 
                       <span>{{ stats.dataset_count }}</span>  
                       <img src="/example_theme_stats/datasets.png"></h3>
@@ -13,7 +13,7 @@
             </div>
 
             <div class="col-md-3 col-sm-6">
-                <a class="homepage-footer-stats" href="/organization">
+                <a class="homepage-footer-stats" href="{{ h.url_for(controller='organization', action='index') }}">
                 <h3 class="homepage-count"> 
                     <span>{{ stats.organization_count }}</span> 
                     <img src="/example_theme_stats/organization.png"> </h3>
@@ -23,7 +23,7 @@
 
             <div class="col-md-3 col-sm-6">
                 <a class="homepage-footer-stats" href="/">
-                <h3 class="homepage-count"> NO <img src="/example_theme_stats/categories.png"></h3>
+                <h3 class="homepage-count"> {{ h.example_theme_all_categories_list()|length }} <img src="/example_theme_stats/categories.png"></h3>
                  <h2 class="homepage-count-description"> Categories </h2>
                 </a>
             </div>

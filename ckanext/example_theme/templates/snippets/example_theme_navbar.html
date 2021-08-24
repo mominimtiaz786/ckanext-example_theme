@@ -23,13 +23,13 @@
                       <li class="nav-button"><a href="{{ h.url_for(controller='organization', action='index') }}">Organizations</a>
                           <hr id="organization" class="options-underline hidden-xs" align="center">
                       </li>
-                      <li class="nav-button"><a href={{ h.url_for(controller='showcase', action='index') }}>Showcase</a>
+                      <li class="nav-button"><a href="{{ h.url_for(controller='showcase', action='index') }}">Showcase</a>
                           <hr id="showcase" class="options-underline hidden-xs" align="center">
                       </li>
-                      <li class="nav-button"><a href="{{ h.url_for(controller='blog', action='index') }}">Blog</a>
+                      <li class="nav-button"><a href="{{ h.url_for(controller='ckanext.pages.controller:PagesController', action ='blog_index')  }}">Blog</a>
                           <hr id="blog" class="options-underline hidden-xs" align="center">
                       </li>
-                      <li class="nav-button"><a href="/contact">Connect</a>
+                      <li class="nav-button"><a href="#">Connect</a>
                           <hr id="contact" class="options-underline hidden-xs" align="center">
                       </li>            
                       <li class="nav-button dropdown">
@@ -44,8 +44,9 @@
                       <li class="nav-button dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                          <li><a href="/about">About Us</a></li>
-                          <li><a href="/pages/guidelines">Guidelines</a></li>
+                          <li><a href="{{ h.url_for(controller='home', action='about') }}">About Us</a></li>
+
+                          <li><a href="{{ h.url_for('/pages/guidelines',_external=True)}}">Guidelines</a></li>
                       </ul>
                       <hr id="about" class="options-underline hidden-xs" align="center">
                       </li>
