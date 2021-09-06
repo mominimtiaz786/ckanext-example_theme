@@ -714,3 +714,9 @@ padding: 0.5vw;
 font-size: 2vw;
 font-family: inherit;
 }
+
+.page_primary{
+    display: flex;
+    align-content: space-around;
+    justify-content: space-between;
+}

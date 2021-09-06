@@ -23,6 +23,10 @@ from ckanext.pages.interfaces import IPagesSchema
 import ckan.logic.action.get as tk
 
 
+ORGANIZATION_FORM_LINK = 'https://docs.google.com/forms/d/e/1FAIpQLScw8OGeR6ZbUGcxjJ-nl9JQpXmHuUu0e52P0cqlKQKy9Ty_vg/viewform'
+
+def organization_form():
+    return ORGANIZATION_FORM_LINK
 
 def all_categories():
     all_categories_list = []
@@ -138,5 +142,6 @@ class ExampleThemePlugin(plugins.SingletonPlugin):
         return {'example_theme_all_categories_list': all_categories,
                 'example_theme_recent_datasets' : most_recent_datasets,
                 'example_theme_popular_datasets' : popular_datasets,
+                'example_theme_organization_form' : organization_form,
                 }
 
