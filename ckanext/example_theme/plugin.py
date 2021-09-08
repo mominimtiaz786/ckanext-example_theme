@@ -28,6 +28,15 @@ ORGANIZATION_FORM_LINK = 'https://docs.google.com/forms/d/e/1FAIpQLScw8OGeR6ZbUG
 def organization_form():
     return ORGANIZATION_FORM_LINK
 
+def organization_views(org_packages):
+    org_views = 0
+    for pkg in org_packages:
+        pkg_views = toolkit.get_action('package_show')(
+            data_dict={'id':pkg.name,'tracking_data':'true'})
+        pkg_views = pkg_views['tracking_summary']['total']   
+        org_views = org_views + pkg_views
+    return org_views
+
 def all_categories():
     all_categories_list = []
     
@@ -143,5 +152,6 @@ class ExampleThemePlugin(plugins.SingletonPlugin):
                 'example_theme_recent_datasets' : most_recent_datasets,
                 'example_theme_popular_datasets' : popular_datasets,
                 'example_theme_organization_form' : organization_form,
+                'example_theme_organization_views' : organization_views,
                 }
 
