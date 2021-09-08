@@ -1,0 +1,18 @@
+
+{% block publisher_email %}
+
+
+<section class="module module-narrow social">
+    <h2 class="module-heading"><i class="fa fa-envelope-open"></i> Publisher Email</h2>
+
+    <div style="padding: 13px">
+        {% if pkg.author_email %}
+        <a href="mailto: {{ pkg.author_email }}">{{ pkg.author_email }}</a>
+        {% else %}
+        <p>Not Added</p>
+        {% endif %}
+    </div>
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% ckan_extends %}
+
+
+{% block content_primary_nav %}
+  {{ h.build_nav_icon('dataset_read', _('Dataset'), id=pkg.name) }}
+  {{ h.build_nav_icon('dataset_activity', _('Activity Stream'), id=pkg.name) }}
+{% endblock %}
+
+
+{% block secondary_content %}
+    
+    {{ super() }}
+
+    {% block package_info %}
+    {% endblock %}
+
+    {% snippet 'snippets/example_theme_publisher_email.html', pkg = pkg %}
+
+{% endblock %}
