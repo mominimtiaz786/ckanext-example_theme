@@ -28,14 +28,34 @@ ORGANIZATION_FORM_LINK = 'https://docs.google.com/forms/d/e/1FAIpQLScw8OGeR6ZbUG
 def organization_form():
     return ORGANIZATION_FORM_LINK
 
-def organization_views(org_packages):
+
+def organization_views(org_id):
+    """
     org_views = 0
     for pkg in org_packages:
         pkg_views = toolkit.get_action('package_show')(
-            data_dict={'id':pkg.name,'tracking_data':'true'})
+            data_dict={'id':pkg.name,'include_tracking':'true'})
+        print("------------------>>>>>>",pkg_views)
         pkg_views = pkg_views['tracking_summary']['total']   
         org_views = org_views + pkg_views
     return org_views
+    """
+    org_with_pkgs = toolkit.get_action('organization_show')(
+        data_dict = { 
+        'id': org_id,
+        'include_datasets': 'true',
+    })
+    total_views = 0
+    for each_pkg in org_with_pkgs['packages']:
+        single_pkg_views = toolkit.get_action('package_show')(
+            data_dict = {
+            'id': each_pkg['id'],
+            'include_tracking': 'true',
+        })['tracking_summary']['total']
+           
+        total_views = total_views + single_pkg_views
+    
+    return total_views
 
 def all_categories():
     all_categories_list = []
